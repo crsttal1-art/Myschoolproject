@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>محاكي الكمبيوتر - إيمان العصيمي</title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- عنوان الصفحة خارج الكمبيوتر -->
+
+    <header class="page-header">
+
+      <h1>
+        محاكي جهاز الكمبيوتر
+      </h1>
+
+      <p>
+        بيئة تفاعلية للتدرب على استخدام الحاسوب
+      </p>
+
+      <strong>
+        إعداد المعلمة: إيمان العصيمي
+      </strong>
+
+    </header>
+
+
+    <!-- الكمبيوتر -->
+
+    <div class="computer-wrap">
+
+      <div class="monitor">
+
+        <div class="screen">
+
+
+          <!-- سطح المكتب -->
+
+          <div
+            id="desktop"
+            class="desktop"
+          >
+
+
+            <!-- اسم الجهاز -->
+
+            <div class="computer-name">
+
+              <span>
+                💻
+              </span>
+
+              <span>
+                جهاز الكمبيوتر
+              </span>
+
+            </div>
+
+
+            <!-- أيقونة واحدة للقائمة -->
+
+            <button
+              class="desktop-menu-icon"
+              onclick="toggleDesktopMenu()"
+            >
+
+              <span>
+                🖥️
+              </span>
+
+              <small>
+                المهام
+              </small>
+
+            </button>
+
+
+            <!-- القائمة المنسدلة -->
+
+            <div
+              id="desktopMenu"
+              class="desktop-menu hidden"
+            >
+
+              <div class="menu-title">
+
+                <span>
+                  💻
+                </span>
+
+                <b>
+                  مهام الكمبيوتر
+                </b>
+
+                <button
+                  onclick="toggleDesktopMenu()"
+                  class="menu-close"
+                >
+                  ×
+                </button>
+
+              </div>
+
+
+              <div class="menu-items">
+
+
+                <!-- الملفات -->
+
+                <button
+                  onclick="openExplorer(); closeDesktopMenu();"
+                >
+
+                  <span class="menu-icon">
+                    📁
+                  </span>
+
+                  <span>
+                    مستكشف الملفات
+                  </span>
+
+                </button>
+
+
+                <!-- سلة المحذوفات -->
+
+                <button
+                  onclick="openTrash(); closeDesktopMenu();"
+                >
+
+                  <span class="menu-icon">
+                    🗑️
+                  </span>
+
+                  <span>
+                    سلة المحذوفات
+                  </span>
+
+                </button>
+
+
+                <!-- الإعدادات -->
+
+                <button
+                  onclick="openSettings(); closeDesktopMenu();"
+                >
+
+                  <span class="menu-icon">
+                    ⚙️
+                  </span>
+
+                  <span>
+                    الإعدادات
+                  </span>
+
+                </button>
+
+
+                <!-- الخلفية -->
+
+                <button
+                  onclick="openSettings(); showSetting('bg'); closeDesktopMenu();"
+                >
+
+                  <span class="menu-icon">
+                    🖼️
+                  </span>
+
+                  <span>
+                    تغيير الخلفية
+                  </span>
+
+                </button>
+
+
+                <!-- الصوت -->
+
+                <button
+                  onclick="openSettings(); showSetting('sound'); closeDesktopMenu();"
+                >
+
+                  <span class="menu-icon">
+                    🔊
+                  </span>
+
+                  <span>
+                    إعدادات الصوت
+                  </span>
+
+                </button>
+
+
+                <!-- الوقت والتاريخ -->
+
+                <button
+                  onclick="openSettings(); showSetting('date'); closeDesktopMenu();"
+                >
+
+                  <span class="menu-icon">
+                    🕐
+                  </span>
+
+                  <span>
+                    الوقت والتاريخ
+                  </span>
+
+                </button>
+
+
+              </div>
+
+            </div>
+
+
+            <!-- نافذة مستكشف الملفات -->
+
+            <div
+              id="window"
+              class="window hidden"
+            >
+
+              <div class="window-bar">
+
+                <b id="windowTitle">
+                  نافذة
+                </b>
+
+                <button
+                  onclick="closeWindow()"
+                  class="window-close"
+                >
+                  ×
+                </button>
+
+              </div>
+
+
+              <div id="windowBody">
+              </div>
+
+            </div>
+
+
+            <!-- نافذة الإعدادات -->
+
+            <div
+              id="settingsWindow"
+              class="window hidden"
+            >
+
+              <div class="window-bar">
+
+                <b>
+                  ⚙️ الإعدادات
+                </b>
+
+                <button
+                  onclick="closeSettings()"
+                  class="window-close"
+                >
+                  ×
+                </button>
+
+              </div>
+
+
+              <div class="settings-tabs">
+
+                <button
+                  onclick="showSetting('date')"
+                >
+                  🕐 الوقت والتاريخ
+                </button>
+
+
+                <button
+                  onclick="showSetting('bg')"
+                >
+                  🖼️ الخلفية
+                </button>
+
+
+                <button
+                  onclick="showSetting('sound')"
+                >
+                  🔊 الصوت
+                </button>
+
+              </div>
+
+
+              <div id="settingsBody">
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+          <!-- شريط المهام السفلي -->
+
+          <div class="taskbar">
+
+
+            <!-- زر القائمة -->
+
+            <button
+              class="start-button"
+              onclick="toggleDesktopMenu()"
+              title="المهام"
+            >
+
+              ☰
+
+            </button>
+
+
+            <!-- اسم البرنامج -->
+
+            <div class="taskbar-title">
+
+              محاكي الكمبيوتر
+
+            </div>
+
+
+            <!-- الساعة -->
+
+            <div class="clock">
+
+              <b id="clock">
+                00:00
+              </b>
+
+              <small id="date">
+                00/00/0000
+              </small>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <!-- قاعدة الكمبيوتر -->
+
+      <div class="stand">
+      </div>
+
+
+      <div class="base">
+      </div>
+
+
+    </div>
+
+
+    <!-- تعليمات -->
+
+    <div class="hint">
+
+      اضغطي على زر ☰ أو أيقونة 🖥️ لعرض مهام الكمبيوتر.
+
+    </div>
+
+
+  </div>
+
+
+  <!-- JavaScript -->
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
